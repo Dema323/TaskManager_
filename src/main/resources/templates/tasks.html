@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taskmanager</title>
+</head>
+<body>
+
+<nav>                    <li class="nav-item">
+    <a class="nav-link" href="?lang=en">
+        EN
+    </a>
+</li>
+    <li class="nav-item">
+        <a class="nav-link" href="?lang=fr">
+            FR
+        </a>
+    </li></nav>
+
+<h4>Tasks</h4>
+<a href="/tasks/new" th:text="#{new_task}"></a>
+<section th:switch="${#lists.size(tasks)}">
+<div th:case="'0'">
+    <p th:text="#{notasks}"></p>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th th:text="#{task.name}"></th>
+        <th th:text="#{task.dateTime}"></th>
+        <th th:text="#{task.id}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${tasks}">
+        <td th:text="*{task.name}"></td>
+        <td><p>: due </p></td>
+        <td th:text="*{task.dateTime}"></td>
+        <td th:text="*{task.id}"></td>
+    </tr>
+    </tbody>
+</table>
+</section>
+</body>
+</html>

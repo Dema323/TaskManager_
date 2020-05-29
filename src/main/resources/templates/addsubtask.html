@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taskmanager</title>
+</head>
+<body>
+
+<nav>                    <li class="nav-item">
+    <a class="nav-link" href="?lang=en">
+        EN
+    </a>
+</li>
+    <li class="nav-item">
+        <a class="nav-link" href="?lang=fr">
+            FR
+        </a>
+    </li></nav>
+
+<form th:method="post" th:action="@{'/tasks/' + ${id} + '/sub/create'}" th:object="${subtask}" novalidate>
+    <h4 th:text="#{add_subtask}"></h4>
+    <div>
+        <label for="name" th:text="#{subtask_name}"></label>
+        <input type="text" name="name" id="name">
+    </div>
+    <div>
+        <label for="description" th:text="#{subtask_description}"></label>
+        <input type="text" name="description" id="description">
+    </div>
+    <input type="submit" th:value="#{add_subtask}">
+</form>
+
+</body>
+</html>

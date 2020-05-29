@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taskmanager</title>
+</head>
+<body>
+<h4>Task</h4>
+<table>
+<thead>
+<tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th>ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td th:text="*{task.name}"></td>
+
+    <td th:text="*{task.description}"></td>
+    <td th:text="*{task.dateTime}"></td>
+    <td th:text="*{task.id}"></td>
+
+    <td><a th:href="@{'/tasks/edit/' + ${task.id}}"  th:text="#{edit}"></a></td>
+</tr>
+</tbody>
+</table>
+<h4 th:text="#{subtasks}"></h4>
+<table>
+    <thead>
+    <tr>
+        <th th:text="#{subtask.name}"></th>
+        <th th:text="#{subtask.description}"></th>
+    </tr>
+    </thead>
+<section th:switch="${#lists.size(task.subtasks)}">
+    <div th:case="'0'">
+        <p th:text="#{no_subtask}"></p>
+    </div>
+
+    <div th:case="*">
+        <table th:each="subtask : ${task.subtasks}">
+            <tr>
+                <th th:text="${subtask.name}"></th>
+                <td th:text="${subtask.description}"></td>
+            </tr>
+        </table>
+    </div>
+        <a th:href="@{'/tasks/' + ${task.id} + '/sub/create'}" th:text="#{new_subtask}"></a>
+</section>
+</table>
+</body>
+</html>
