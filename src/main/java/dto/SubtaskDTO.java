@@ -37,13 +37,4 @@ public class SubtaskDTO {
         this.description = description;
     }
 
-
-
-    public static SubtaskDTO create(UUID id, String name, String description){
-        SubtaskDTO dto = new SubtaskDTO();
-        dto.setId(id);
-        dto.setName(name);
-        dto.setDescription(description);
-        return dto;
-    }
 }
