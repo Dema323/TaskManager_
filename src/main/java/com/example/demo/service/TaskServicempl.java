@@ -2,13 +2,13 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Subtask;
 import com.example.demo.domain.Task;
-import com.example.demo.repository.DatabaseException;
+import com.example.demo.dto.SubtaskDTO;
+import com.example.demo.dto.TaskDTO;
 import com.example.demo.repository.TaskRepository;
-import dto.SubtaskDTO;
-import dto.TaskDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -44,7 +44,6 @@ public class TaskServicempl implements TaskService {
         task.setDescription(taskdto.getDescription());
         task.setDateTime(taskdto.getDateTime());
         repository.save(task);
-
    }
 
    @Override
@@ -64,7 +63,7 @@ public class TaskServicempl implements TaskService {
    @Override
     public TaskDTO getTaskById(UUID id){
        Task task = repository.getOne(id);
-       if(task == null)throw new DatabaseException("Task not found");
+       if(task == null)throw new EntityNotFoundException("Task not found");
 
        TaskDTO taskDTO = new TaskDTO();
        taskDTO.setId(task.getId());
@@ -96,6 +95,7 @@ public class TaskServicempl implements TaskService {
        Subtask subtask = new Subtask();
        subtask.setName(subtaskDTO.getName());
        subtask.setDescription(subtaskDTO.getDescription());
+       subtask.setId(subtaskDTO.getId());
         Task task = this.repository.getOne(id);
         task.addSubtask(subtask);
         this.repository.save(task);

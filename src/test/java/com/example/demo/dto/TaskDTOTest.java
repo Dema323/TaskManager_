@@ -1,18 +1,18 @@
-package DTOTests;
+package com.example.demo.dto;
 
-import com.example.demo.domain.Subtask;
-import com.example.demo.domain.Task;
-import dto.SubtaskDTO;
-import dto.TaskDTO;
+import com.example.demo.dto.SubtaskDTO;
+import com.example.demo.dto.TaskDTO;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 public class TaskDTOTest {
 
     @Test

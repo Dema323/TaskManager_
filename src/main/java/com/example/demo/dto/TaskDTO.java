@@ -1,4 +1,5 @@
-package dto;
+package com.example.demo.dto;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -66,12 +67,12 @@ public class TaskDTO {
     }
 
     public static TaskDTO create(UUID id, String title, String description, LocalDateTime datetime, ArrayList<SubtaskDTO> subtaskDTOS){
-        TaskDTO dto = new TaskDTO();
-        dto.setId(id);
-        dto.setName(title);
-        dto.setDescription(description);
-        dto.setDateTime(datetime);
-        dto.setSubtasks(subtaskDTOS);
-        return dto;
+        TaskDTO taskDTO = new TaskDTO();
+        taskDTO.setId(id);
+        taskDTO.setName(title);
+        taskDTO.setDescription(description);
+        taskDTO.setDateTime(datetime);
+        taskDTO.setSubtasks(subtaskDTOS);
+        return taskDTO;
     }
 }

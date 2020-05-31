@@ -5,24 +5,32 @@
     <title>Taskmanager</title>
 </head>
 <body>
+<nav  class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <a class="nav-link" href="/tasks" th:text="#{nav.tasks}">tasks</a>
+    <a class="nav-link" href="/tasks/new" th:text="#{nav.newtask}">new</a>
+    <a class="nav-link" href="?lang=en">EN</a>
+    <a class="nav-link" href="?lang=fr">FR</a></nav>
+
 <h4 th:text="#{addtask}"></h4th:text></h4>
 
 <h4 th:text="'Edit task: ' + ${task.id}"></h4>
 <form th:method="post" th:action="@{'/tasks/edit/' + ${task.id}}" th:object="${task}">
     <div>
         <label for="name" th:text="#{task.name}"></label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" required th:field="*{name}">
     </div>
     <div>
         <label for="dateTime" th:text="#{task.dateTime}"></label>
-        <input type="datetime-local" name="dateTime" id="dateTime">
+        <input type="datetime-local" name="dateTime" id="dateTime" required th:field="*{dateTime}">
     </div>
     <div>
         <label for="description" th:text="#{task.description}"></label>
-        <input type="text" name="description" id="description">
+        <input type="text" name="description" id="description" required th:field="*{description}">
     </div>
     <input type="submit" th:value="#{edit}">
 </form>
 
 </body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </html>>

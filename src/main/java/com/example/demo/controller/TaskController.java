@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.Task;
-import com.example.demo.repository.DatabaseException;
+import com.example.demo.dto.SubtaskDTO;
+import com.example.demo.dto.TaskDTO;
 import com.example.demo.repository.TaskRepository;
 import com.example.demo.service.TaskService;
 import com.example.demo.service.TaskServicempl;
-import dto.SubtaskDTO;
-import dto.TaskDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -29,7 +26,7 @@ public class TaskController {
     @Autowired
     public TaskController(TaskRepository repository){
         this.taskService = new TaskServicempl(repository);
-        this.taskService.addTask(TaskDTO.create(UUID.randomUUID(),"Test_Title","Test_Description", LocalDateTime.now(),new ArrayList<>()));
+        this.taskService.addTask(TaskDTO.create(UUID.fromString("950779d8-b49d-4ce0-bcd0-228a2086b889"),"Test_Title","Test_Description", LocalDateTime.of(2020, 05, 31, 11, 28),new ArrayList<>()));
         }
 
     @GetMapping("/")
@@ -54,7 +51,7 @@ public class TaskController {
     }
 
     @PostMapping("/tasks/new")
-    public String addTask(@ModelAttribute @Valid TaskDTO taskdto, BindingResult binding){
+    public String addTask(@ModelAttribute("task") @Valid TaskDTO taskdto, BindingResult binding){
         if(binding.hasErrors()) return "create";
         this.taskService.addTask(taskdto);
         return "redirect:/tasks";
@@ -74,7 +71,7 @@ public class TaskController {
         try{
             model.addAttribute("task", taskService.getTaskById(id));
             return "description";
-        }catch (DatabaseException| EntityNotFoundException | NumberFormatException e){
+        }catch (EntityNotFoundException | NumberFormatException e){
             error = "Task not found.";
         }
         model.addAttribute("error",error);

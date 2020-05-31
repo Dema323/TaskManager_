@@ -1,4 +1,4 @@
-package domainTests;
+package com.example.demo.domain;
 
 import com.example.demo.domain.Subtask;
 import org.junit.jupiter.api.Test;
@@ -8,6 +8,9 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
+@SpringBootTest
 public class SubtaskTest {
 
     @Test

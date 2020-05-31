@@ -5,14 +5,20 @@
     <title>Taskmanager</title>
 </head>
 <body>
+<nav  class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <a class="nav-link" href="/tasks" th:text="#{nav.tasks}">tasks</a>
+    <a class="nav-link" href="/tasks/new" th:text="#{nav.newtask}">new</a>
+    <a class="nav-link" href="?lang=en">EN</a>
+    <a class="nav-link" href="?lang=fr">FR</a></nav>
+
 <h4>Task</h4>
 <table>
 <thead>
 <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Date</th>
-    <th>ID</th>
+    <th th:text="#{task.name}"></th>
+    <th th:text="#{task.description}"></th>
+    <th th:text="#{task.dateTime}"></th>
+    <th th:text="#{task.id}"></th>
 </tr>
 </thead>
 <tbody>
@@ -43,7 +49,7 @@
     <div th:case="*">
         <table th:each="subtask : ${task.subtasks}">
             <tr>
-                <th th:text="${subtask.name}"></th>
+                <td th:text="${subtask.name}"></td>
                 <td th:text="${subtask.description}"></td>
             </tr>
         </table>
@@ -52,4 +58,19 @@
 </section>
 </table>
 </body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 0 40px;
+    }
+    td {
+        width: 300px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+    }
+</style>
 </html>

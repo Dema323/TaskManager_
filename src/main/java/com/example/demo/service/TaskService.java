@@ -1,17 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.Task;
-import dto.SubtaskDTO;
-import dto.TaskDTO;
+import com.example.demo.dto.SubtaskDTO;
+import com.example.demo.dto.TaskDTO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface TaskService {
 
-    public List<TaskDTO> getTasks();
+     List<TaskDTO> getTasks();
 
     void addTask(TaskDTO taskdto);
 

@@ -45,10 +45,4 @@ public class Subtask {
         this.description = description;
     }
 
-    public static Subtask create(String name, String description){
-        Subtask subtask = new Subtask();
-        subtask.setName(name);
-        subtask.setDescription(description);
-        return subtask;
-    }
 }

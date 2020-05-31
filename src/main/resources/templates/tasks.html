@@ -5,18 +5,11 @@
     <title>Taskmanager</title>
 </head>
 <body>
-
-<nav>                    <li class="nav-item">
-    <a class="nav-link" href="?lang=en">
-        EN
-    </a>
-</li>
-    <li class="nav-item">
-        <a class="nav-link" href="?lang=fr">
-            FR
-        </a>
-    </li></nav>
-
+<nav  class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <a class="nav-link" href="/tasks" th:text="#{nav.tasks}">tasks</a>
+    <a class="nav-link" href="/tasks/new" th:text="#{nav.newtask}">new</a>
+    <a class="nav-link" href="?lang=en">EN</a>
+    <a class="nav-link" href="?lang=fr">FR</a></nav>
 <h4>Tasks</h4>
 <a href="/tasks/new" th:text="#{new_task}"></a>
 <section th:switch="${#lists.size(tasks)}">
@@ -24,22 +17,38 @@
     <p th:text="#{notasks}"></p>
 </div>
 <table>
-    <thead>
+
     <tr>
         <th th:text="#{task.name}"></th>
         <th th:text="#{task.dateTime}"></th>
         <th th:text="#{task.id}"></th>
+        <th th:text="#{task.description}"></th>
     </tr>
-    </thead>
-    <tbody>
+
+
     <tr th:each="task : ${tasks}">
         <td th:text="*{task.name}"></td>
-        <td><p>: due </p></td>
+
         <td th:text="*{task.dateTime}"></td>
         <td th:text="*{task.id}"></td>
+        <td><a th:href="@{'/tasks/' + ${task.id}}"  th:text="#{task.description}"></a></td>
     </tr>
-    </tbody>
+
 </table>
 </section>
 </body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </html>
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 0 40px;
+    }
+    td {
+        width: 300px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+    }
+</style>

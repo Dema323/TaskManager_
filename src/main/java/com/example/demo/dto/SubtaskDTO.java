@@ -1,12 +1,14 @@
-package dto;
+package com.example.demo.dto;
 
-import java.util.List;
+import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
 public class SubtaskDTO {
 
+    @NotEmpty
     private String name;
     private UUID id;
+    @NotEmpty
     private String description;
 
     public SubtaskDTO(){

@@ -32,11 +32,12 @@ public class Task {
     @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private List<Subtask> subtasks;
 
-    public Task(String name, LocalDateTime dateTime, UUID id, String description) {
-        setName(name);
-        setDateTime(dateTime);
-        setId(id);
-        setDescription(description);
+    public Task(String name, LocalDateTime dateTime, UUID id, String description, List<Subtask> subtasks) {
+        this.name = name;
+        this.dateTime = dateTime;
+        this.id = id;
+        this.description = description;
+        this.subtasks = subtasks;
 
     }
 
@@ -81,15 +82,6 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public static Task create(String title, String description, LocalDateTime datetime, ArrayList<Subtask> subtasks){
-        Task task = new Task();
-        task.setName(title);
-        task.setDescription(description);
-        task.setDateTime(datetime);
-        task.setSubtasks(subtasks);
-        return task;
     }
 
     public void addSubtask(Subtask subtask){
